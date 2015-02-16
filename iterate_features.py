@@ -20,7 +20,7 @@ from PyQt4.QtCore import Qt
 myIt = None
 activeLayerId = ""
 
-def enterPressed():
+def escapePressed():
     global myIt
     myIt = None
     print "Iteration finished!"
@@ -49,7 +49,7 @@ def spaceBarPressed():
     
 shortcutEnter = QShortcut(QKeySequence(Qt.Key_Escape), iface.mapCanvas())
 shortcutEnter.setContext(Qt.ApplicationShortcut)
-shortcutEnter.activated.connect(enterPressed)
+shortcutEnter.activated.connect(escapePressed)
 
 shortcutSpaceBar = QShortcut(QKeySequence(Qt.Key_Space), iface.mapCanvas())
 shortcutSpaceBar.setContext(Qt.ApplicationShortcut)
