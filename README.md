@@ -1,7 +1,7 @@
 # PyQGIS scripts
 
 This is a collection of PyQGIS scripts for different purposes. 
-Currently, the following scripts are available:
+Currently, the following scripts are available (under a GNU GPL v.2.0 license):
 
  * Iterate through features: [iterate_features.py](https://github.com/gacarrillor/pyqgis_scripts/blob/master/iterate_features.py)
  
