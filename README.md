@@ -7,4 +7,6 @@ Currently, the following scripts are available (under a GNU GPL v.2.0 license):
  
    See http://gis.stackexchange.com/q/133189/4972 for instructions.
 
-
+ * Iterate through layers and export map as PNG: [iterate_layers_export_png.py](https://github.com/gacarrillor/pyqgis_scripts/blob/master/iterate_layers_export_png.py)
+ 
+   See http://gis.stackexchange.com/a/189825/4972 for instructions.
