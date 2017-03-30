@@ -47,9 +47,9 @@ def spaceBarPressed():
         print "We reached the last feature of this layer already.\n" + \
             "If you want to restart press the Escape key."
     
-shortcutEnter = QShortcut(QKeySequence(Qt.Key_Escape), iface.mapCanvas())
-shortcutEnter.setContext(Qt.ApplicationShortcut)
-shortcutEnter.activated.connect(escapePressed)
+shortcutEscape = QShortcut(QKeySequence(Qt.Key_Escape), iface.mapCanvas())
+shortcutEscape.setContext(Qt.ApplicationShortcut)
+shortcutEscape.activated.connect(escapePressed)
 
 shortcutSpaceBar = QShortcut(QKeySequence(Qt.Key_Space), iface.mapCanvas())
 shortcutSpaceBar.setContext(Qt.ApplicationShortcut)
