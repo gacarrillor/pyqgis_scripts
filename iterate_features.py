@@ -14,8 +14,9 @@
 # *                                                                         *
 # ***************************************************************************
 from qgis.utils import iface
-from PyQt4.QtGui import QShortcut, QKeySequence
-from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QKeySequence
+from PyQt5.QtWidgets import QShortcut
+from PyQt5.QtCore import Qt
 
 myIt = None
 activeLayerId = ""
@@ -23,13 +24,13 @@ activeLayerId = ""
 def escapePressed():
     global myIt
     myIt = None
-    print "Iteration finished!"
+    print ("Iteration finished!")
 
 def spaceBarPressed():
     global myIt, activeLayerId
     aLayer = iface.activeLayer()
     if not aLayer or not aLayer.type() == 0:
-        print "Please first select a vector layer in the ToC."
+        print ("Please first select a vector layer in the ToC.")
         return
     if activeLayerId != aLayer.id():
         activeLayerId = aLayer.id()
@@ -42,10 +43,10 @@ def spaceBarPressed():
         aLayer.removeSelection()
         aLayer.select( feat.id() )
         iface.actionZoomToSelected().trigger()
-        print "Selected feature:",str( feat.id() )
+        ("Selected feature:",str( feat.id() ))
     else:
-        print "We reached the last feature of this layer already.\n" + \
-            "If you want to restart press the Escape key."
+        print ("We reached the last feature of this layer already.\n" + \
+            "If you want to restart press the Escape key.")
     
 shortcutEscape = QShortcut(QKeySequence(Qt.Key_Escape), iface.mapCanvas())
 shortcutEscape.setContext(Qt.ApplicationShortcut)
