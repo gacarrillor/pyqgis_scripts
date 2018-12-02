@@ -14,7 +14,7 @@
 # *                                                                         *
 # ***************************************************************************
 from qgis.utils import iface
-from PyQt4.QtGui import QKeySequence
+from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QShortcut
 from PyQt5.QtCore import Qt
 
