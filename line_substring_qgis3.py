@@ -30,10 +30,13 @@ def split_line_equal_length(layer, feature, parts):
     line_const = line.constGet()
     attrs = feature.attributes()
     
-    print("part count:", line_const.partCount())
     new_features = list()
     
-    if line_const.partCount() > 0:
+    if not line.isMultipart():
+        print("CASE: Single part")
+        new_features.extend(split_line_part_equal_length(layer, line_const, parts, attrs))
+    else:
+        print("CASE: Multi ({}) part".format(line_const.partCount()))
         for i in range(line_const.partCount()):
             curve = line_const.geometryN(i)
             new_features.extend(split_line_part_equal_length(layer, curve, parts, attrs))
@@ -49,3 +52,4 @@ elif len(layer.selectedFeatures()) != 1:
 else:
     split_line_equal_length(layer, layer.selectedFeatures()[0], parts)
     iface.messageBar().pushMessage(f"Your line was splitted in {parts} parts! Remember to save changes.", Qgis.Success)
+    iface.mapCanvas().refresh()
