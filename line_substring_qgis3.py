@@ -4,7 +4,7 @@ This will delete the original line and copy its attributes to all new parts.
 
 1. Select a line layer in the Layers Panel.
 2. Select a single line in the canvas.
-3. Set the parts variable: Number of parts you want the line to be splitted into.
+3. Set the parts variable: Number of parts you want the line to be split into.
 4. Run the script.
 """
 parts = 5
