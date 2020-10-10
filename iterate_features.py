@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # ***************************************************************************
 #
-# Iterate through a vector layer features by pressing the SpaceBar
+# Iterate vector layer features by pressing the SpaceBar
 #
-# Copyright (C) 2015 Germán Carrillo  (geotux_tuxman@linuxmail.org)
+# 2015 Germán Carrillo  (gcarrillo@linuxmail.org)
 #
 # ***************************************************************************
 # *                                                                         *
@@ -13,9 +12,11 @@
 # *   (at your option) any later version.                                      *
 # *                                                                         *
 # ***************************************************************************
+from qgis.PyQt.QtCore import Qt
+from qgis.PyQt.QtGui import QKeySequence
+from qgis.PyQt.QtWidgets import QShortcut
+from qgis.core import QgsMapLayer, QgsFeatureRequest, QgsWkbTypes
 from qgis.utils import iface
-from PyQt4.QtGui import QShortcut, QKeySequence
-from PyQt4.QtCore import Qt
 
 myIt = None
 activeLayerId = ""
@@ -23,30 +24,34 @@ activeLayerId = ""
 def escapePressed():
     global myIt
     myIt = None
-    print "Iteration finished!"
+    iface.messageBar().pushInfo("Feature iterator", "Iteration reset!")
 
-def spaceBarPressed():
+def spaceBarPressed():  
     global myIt, activeLayerId
     aLayer = iface.activeLayer()
-    if not aLayer or not aLayer.type() == 0:
-        print "Please first select a vector layer in the ToC."
+    if not aLayer or not aLayer.type() == QgsMapLayer.VectorLayer:
+        iface.messageBar().pushInfo("Feature iterator",
+            "First select a vector layer in the layers panel.")
         return
     if activeLayerId != aLayer.id():
         activeLayerId = aLayer.id()
         myIt = None
     if not myIt:
-        myIt = aLayer.getFeatures()
+        request = QgsFeatureRequest().setFlags(QgsFeatureRequest.NoGeometry).setNoAttributes()
+        myIt = aLayer.getFeatures(request)
 
     feat = next( myIt, None )
     if feat:
-        aLayer.removeSelection()
-        aLayer.select( feat.id() )
-        iface.actionZoomToSelected().trigger()
-        print "Selected feature:",str( feat.id() )
+        aLayer.selectByIds( [feat.id()] )
+        if aLayer.geometryType() == QgsWkbTypes.PointGeometry:
+            iface.actionPanToSelected().trigger()  # Pan to points
+        else:
+            iface.actionZoomToSelected().trigger()  # Zoom to the rest
     else:
-        print "We reached the last feature of this layer already.\n" + \
-            "If you want to restart press the Escape key."
-    
+        iface.messageBar().pushInfo("Feature iterator",
+            "We reached the last feature of this layer already.\n" + \
+            "If you want to restart press the Escape key.")
+
 shortcutEscape = QShortcut(QKeySequence(Qt.Key_Escape), iface.mapCanvas())
 shortcutEscape.setContext(Qt.ApplicationShortcut)
 shortcutEscape.activated.connect(escapePressed)
