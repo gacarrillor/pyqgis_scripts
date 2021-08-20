@@ -5,6 +5,12 @@ The following scripts are available (under a GNU GPL v.2.0 license):
 
 **QGIS v3.x**
 
++ Run custom algorithm from PyQGIS standalone script: [run_processing_custom_alg_standalone.py](https://github.com/gacarrillor/pyqgis_scripts/blob/master/pyqgis_custom_processing_algorithm_standalone/run_processing_custom_alg_standalone.py)
+
+  Allows you to run a custom Processing algorithm from a PyQGIS standalone script. For that, it calls a custom algorithm provider, which in turn uses the custom Processing algorithm. All of them (3 files) are available in the same folder as the standalone script.
+
+  See https://gis.stackexchange.com/q/408684/4972 for instructions.
+
  * Iterate vector layer features: [iterate_features.py](https://github.com/gacarrillor/pyqgis_scripts/blob/master/iterate_features.py)
 
    Allows you to iterate features of the active vector layer. It selects one feature at a time and pans (for point layers) or zooms to it (for the other geometry types or even geometryless tables).
