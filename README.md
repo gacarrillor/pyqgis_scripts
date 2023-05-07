@@ -17,6 +17,8 @@ The following scripts are available (under a GNU GPL v.2.0 license):
    
    See http://gis.stackexchange.com/q/133189/4972 for instructions.
    
+   ![image](https://i.stack.imgur.com/Ua96m.gif)
+
  * Split line in parts of the same length: [line_substring_qgis3.py](https://github.com/gacarrillor/pyqgis_scripts/blob/master/line_substring_qgis3.py)
 
    Splits the selected line into several parts of the same length. Deletes the original line and copy its attributes to all new parts. 
@@ -37,4 +39,8 @@ The following scripts are available (under a GNU GPL v.2.0 license):
  * Snap a road network to a hexgrid: [snap_road_network_to_hexgrid_qgis2.py](https://github.com/gacarrillor/pyqgis_scripts/blob/master/snap_road_network_to_hexgrid_qgis2.py)
 
    See http://gis.stackexchange.com/a/189731/4972 for instructions.   
+   ![image](https://user-images.githubusercontent.com/652785/236654701-4daa2124-0651-4de2-996c-5b18f10d5d3a.png)
+   ![image](https://user-images.githubusercontent.com/652785/236654715-20256830-1a0d-44a2-b320-5cf56b4f870c.png)
+
+
    
